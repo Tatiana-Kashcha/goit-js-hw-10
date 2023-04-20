@@ -8,5 +8,3 @@ function fetchCountries(name) {
   });
 }
 export { fetchCountries };
-
-//?fields={name.official};{capital};{population};{flags.svg};{languages}
