@@ -19,10 +19,10 @@ function onSearch(evt) {
 
       if (data.length === 1) {
         countryInfo.innerHTML = createMarkup(data);
-        return;
+        countryList.innerHTML = '';
       } else if (data.length >= 2 && data.length <= 10) {
         countryList.innerHTML = createMarkupAll(data);
-        return;
+        countryInfo.innerHTML = '';
       } else if (data.length > 10) {
         countryList.innerHTML = '';
         Notify.info(
