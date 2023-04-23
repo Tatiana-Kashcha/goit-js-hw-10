@@ -37,3 +37,4 @@ function createMarkup(arr) {
     )
     .join('');
 }
+//майже все
