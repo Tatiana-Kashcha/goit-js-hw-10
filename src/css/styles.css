@@ -18,3 +18,37 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+/* Стилі для розмітки */
+.country {
+  display: flex;
+}
+
+.country-flag {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.country-title {
+  font-size: 36px;
+  margin: 0;
+}
+
+.info {
+  list-style: none;
+  margin-top: 30px;
+  padding-left: 0;
+}
+
+.info-text {
+  font-size: 20px;
+}
+
+.info-text:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.info-title {
+  font-weight: 700;
+  font-size: 20px;
+}

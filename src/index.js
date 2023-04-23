@@ -26,15 +26,16 @@ function createMarkup(arr) {
         population,
         flags: { svg },
         languages,
-      }) => `<div><img src=${svg} alt="Прапор ${official}">
-      <h2>${official}</h2></div>
-      <ul>
-        <li><span>Capital: </span>${capital}</li>
-        <li><span>Population: </span>${population}</li>
-        <li><span>Languages: </span>${languages}</li>
+      }) => `<div class="country">
+      <img class="country-flag" src=${svg} alt="Прапор ${official}">
+      <h2 class="country-title">${official}</h2>
+      </div>
+      <ul class="info">
+        <li class="info-text"><span class="info-title">Capital: </span>${capital}</li>
+        <li class="info-text"><span class="info-title">Population: </span>${population}</li>
+        <li class="info-text"><span class="info-title">Languages: </span>${languages}</li>
       </ul>
     `
     )
     .join('');
 }
-//майже все
