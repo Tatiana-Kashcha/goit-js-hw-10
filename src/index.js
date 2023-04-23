@@ -14,13 +14,33 @@ function onSearch(evt) {
   const country = evt.target.value.trim();
 
   fetchCountries(country)
-    .then(data => (countryInfo.innerHTML = createMarkup(data)))
-    // .then(data => (countryList.innerHTML = createMarkupAll(data)))
-    .catch(error => console.log(error));
+    .then(data => {
+      console.log(data.length > 10);
+
+      if (data.length === 1) {
+        countryInfo.innerHTML = createMarkup(data);
+        return;
+      } else if (data.length >= 2 && data.length <= 10) {
+        countryList.innerHTML = createMarkupAll(data);
+        return;
+      } else if (data.length > 10) {
+        countryList.innerHTML = '';
+        Notify.info(
+          'Too many matches found. Please enter a more specific name.'
+        );
+      }
+    })
+    .catch(error => {
+      Notify.failure('Oops, there is no country with that name');
+    });
 }
+
+// Notify.failure('Oops, there is no country with that name');
+// .catch(error => console.log(error));
+
 /**
  * Створює розмітку для однієї країни за вхідними параметрами
- * @param {*} arr
+ * @param {*} arr масив об'єктів
  * @returns розмітку для рендеру
  */
 function createMarkup(arr) {
@@ -50,7 +70,7 @@ function createMarkup(arr) {
 
 /**
  * Створює розмітку для багатьох країн за вхідними параметрами
- * @param {*} arrAll
+ * @param {*} arrAll масив об'єктів
  * @returns розмітку для рендеру
  */
 function createMarkupAll(arrAll) {
