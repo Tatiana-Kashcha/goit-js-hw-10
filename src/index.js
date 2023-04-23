@@ -10,6 +10,10 @@ const countryList = document.querySelector('.country-list');
 
 searchEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
+/**
+ * Рендерить розмітку в залежності від результатів пошуку
+ * @param {*} evt
+ */
 function onSearch(evt) {
   const country = evt.target.value.trim();
 
@@ -32,11 +36,10 @@ function onSearch(evt) {
     })
     .catch(error => {
       Notify.failure('Oops, there is no country with that name');
+      countryInfo.innerHTML = '';
+      countryList.innerHTML = '';
     });
 }
-
-// Notify.failure('Oops, there is no country with that name');
-// .catch(error => console.log(error));
 
 /**
  * Створює розмітку для однієї країни за вхідними параметрами
