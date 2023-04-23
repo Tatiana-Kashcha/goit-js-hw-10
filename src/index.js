@@ -16,10 +16,13 @@ searchEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
  */
 function onSearch(evt) {
   const country = evt.target.value.trim();
+  if (country === '') {
+    return;
+  }
 
   fetchCountries(country)
     .then(data => {
-      console.log(data.length > 10);
+      console.log(data.length > 10); //для перевірки
 
       if (data.length === 1) {
         countryInfo.innerHTML = createMarkup(data);
