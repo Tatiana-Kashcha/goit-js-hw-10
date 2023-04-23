@@ -6,6 +6,7 @@ import { fetchCountries } from './fetchCountries';
 const DEBOUNCE_DELAY = 300;
 const searchEl = document.querySelector('#search-box');
 const countryInfo = document.querySelector('.country-info');
+const countryList = document.querySelector('.country-list');
 
 searchEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
@@ -14,9 +15,14 @@ function onSearch(evt) {
 
   fetchCountries(country)
     .then(data => (countryInfo.innerHTML = createMarkup(data)))
+    // .then(data => (countryList.innerHTML = createMarkupAll(data)))
     .catch(error => console.log(error));
 }
-
+/**
+ * Створює розмітку для однієї країни за вхідними параметрами
+ * @param {*} arr
+ * @returns розмітку для рендеру
+ */
 function createMarkup(arr) {
   return arr
     .map(
@@ -37,6 +43,23 @@ function createMarkup(arr) {
           languages
         ).join(', ')}</li>
       </ul>
+    `
+    )
+    .join('');
+}
+
+/**
+ * Створює розмітку для багатьох країн за вхідними параметрами
+ * @param {*} arrAll
+ * @returns розмітку для рендеру
+ */
+function createMarkupAll(arrAll) {
+  return arrAll
+    .map(
+      ({ name: { official }, flags: { svg } }) => `<li class="country-all">
+      <img class="country-flag" src=${svg} alt="Прапор ${official}">
+      <h2 class="country-title-all">${official}</h2>
+      </li>
     `
     )
     .join('');
