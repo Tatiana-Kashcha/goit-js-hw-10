@@ -33,7 +33,9 @@ function createMarkup(arr) {
       <ul class="info">
         <li class="info-text"><span class="info-title">Capital: </span>${capital}</li>
         <li class="info-text"><span class="info-title">Population: </span>${population}</li>
-        <li class="info-text"><span class="info-title">Languages: </span>${languages}</li>
+        <li class="info-text"><span class="info-title">Languages: </span>${Object.values(
+          languages
+        ).join(', ')}</li>
       </ul>
     `
     )
